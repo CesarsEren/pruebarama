@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HTML Challenge</title>
+</head>
+
+<body>
+    <div style="margin-top:5px;margin-bottom:5px">
+        <div style="display:block">
+            <label for="nombre">Nombre</label>
+            <input type="text" id="nombre" />
+            <small id="nombreerror" style="display:none;color:red"></small>
+        </div>
+        <div style="display:block">
+            <label for="apellido">Apellido</label>
+            <input type="text" id="apellido" />
+            <small id="apellidoerror" style="display:none;color:red"></small>
+        </div>
+        <div style="display:block">
+            <label for="edad">Edad</label>
+            <input type="number" id="edad" />
+            <small id="edaderror" style="display:none;color:red"></small>
+        </div>
+        <div style="display:block">
+            <button onclick="registrar()">Registrar</button>
+        </div>
+    </div>
+    <table id="tabla" border=1>
+        <thead>
+            <tr>
+                <th>FirstName</th>
+                <th>LastName</th>
+                <th>Edad</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Cesars</td>
+                <td>Pinedo</td>
+                <td>24</td>
+            </tr>
+        </tbody>
+    </table>
+    <script>
+
+        var numeros = '0123456789';
+        function tienenumero(text) {
+            for (i = 0; i < text.length; i++) {
+                if (numeros.indexOf(text.charAt(i), 0) != -1) {
+                    return 1;
+                }
+            }
+            return 0;
+        }
+        function registrar() { 
+           
+            var nombre = document.getElementById("nombre").value;
+            var apellido = document.getElementById("apellido").value;
+            var edad = document.getElementById("edad").value;
+console.log(nombre,apellido,edad)
+console.log(tienenumero(nombre),tienenumero(apellido),tienenumero(edad))
+            var error = false;
+            if (tienenumero(nombre)) {
+                error = true;
+                document.getElementById("nombreerror").innerText = "este campo no puede tener numero";
+                document.getElementById("nombreerror").style.display = "block";
+            }
+            if (tienenumero(apellido)) {
+                error = true;
+                document.getElementById("apellidoerror").innerText = "este campo no puede tener numero";
+                document.getElementById("apellidoerror").style.display = "block";
+            }
+            if (!tienenumero(edad)) {
+                error = true;
+                document.getElementById("edaderror").innerText = "este campo solo puede tener numeros";
+                document.getElementById("edaderror").style.display = "block";
+            }
+
+
+
+            if (!error) {
+                var tabla = document.getElementById("tabla");
+                var fila = tabla.insertRow(1);
+                var col1 = fila.insertCell(0);
+                var col2 = fila.insertCell(1);
+                var col3 = fila.insertCell(2);
+
+                col1.innerHTML = nombre;
+                col2.innerHTML = apellido;
+                col3.innerHTML = edad;
+            }
+        }
+
+ 
+
+    </script>
+</body>
+
+</html>
